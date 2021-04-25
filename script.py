@@ -1,52 +1,80 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Apr 24 04:45:48 PM 2021
-
-@author: Bireshwar
-"""
 import csv
 
-print("Press 1 to Search by Serial No")
-print("Press 2 to Search by Account")
-print("Press 3 to Search by Code")
-print("Press 4 to Search by Country Code")
-print("Press 5 to Search by Product Type")
-print("Press 6 to Search by Value")
-print("Press 7 to Search by Status")
-print("Press 8 to List all data")
+fileName = "gsquarterly_december-2020-revised.csv"
 
-def getData ( searchText, index ):
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
+def getData ( index ):
+    if index != -1:
+        inputValue = input("Enter Data : ")
+
+    with open(fileName, "rt") as f:
         for i, row in enumerate(csv.reader(f, delimiter=",")):
             if i != 0:
-                if searchText == "all":
+                if index == -1:
                     print(row)
                 else:
-                    inputValue = input(searchText)
                     if str(inputValue).strip() == str(row[index]):
                         print(row)
 
-choice = int(input())
-if choice == 1:
-    getData("Enter Serial No:  ", 0 )
+def listData ():
+    getData( -1 )
 
-if choice == 2:
-    getData("Enter Account:  ", 2 )
+def searchData ():
+    print("> [ Press 1 ] Serial No")
+    print("> [ Press 2 ] Account")
+    print("> [ Press 3 ] Code")
+    print("> [ Press 4 ] Country Code")
+    print("> [ Press 5 ] Product Type")
+    print("> [ Press 6 ] Value")
+    print("> [ Press 7 ] Status")
 
-if choice == 3:
-    getData("Enter Code:  ", 3 )
+    searchChoice = int(input())
 
-if choice == 4:
-    getData("Enter Country Code:  ", 4 )
+    if searchChoice == 1:
+        getData( 0 )
+    else :
+        getData( searchChoice )
 
-if choice == 5:
-    getData("Enter Product Type:  ", 5 )
+def sortData ():
+    print("> [ Press 1 ] Serial No")
+    print("> [ Press 2 ] Account")
+    print("> [ Press 3 ] Code")
+    print("> [ Press 4 ] Country Code")
+    print("> [ Press 5 ] Product Type")
+    print("> [ Press 6 ] Value")
+    print("> [ Press 7 ] Status")
 
-if choice == 6:
-    getData("Enter Value:  ", 6 )
+    sortChoice = int(input())
 
-if choice == 7:
-    getData("Enter Status:  ", 7 )
+    if sortChoice == 1:
+        reArrangeData( 0 )
+    else :
+        reArrangeData( sortChoice )
 
-if choice == 8:
-    getData("all", 0 )
+
+def reArrangeData( index ):
+    with open(fileName, "rt") as f:
+        for i, row in enumerate(csv.reader(f, delimiter=",")):
+            print(row)
+            # for j in range(i+1, len(arr)):
+    #Sort the array in ascending order    
+    # for i in range(0, len(arr)):    
+    #     for j in range(i+1, len(arr)):    
+    #         if(arr[i] > arr[j]):    
+    #             temp = arr[i];    
+    #             arr[i] = arr[j];    
+    #             arr[j] = temp;
+
+print("[ Press 1 ] List")
+print("[ Press 2 ] Search")
+print("[ Press 3 ] Sort")
+
+mainChoice = int(input())
+
+if mainChoice == 1:
+    listData()
+
+if mainChoice == 2:
+    searchData()
+
+if mainChoice == 3:
+    sortData()
