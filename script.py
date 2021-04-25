@@ -15,74 +15,38 @@ print("Press 6 to Search by Value")
 print("Press 7 to Search by Status")
 print("Press 8 to List all data")
 
+def getData ( searchText, index ):
+    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
+        for i, row in enumerate(csv.reader(f, delimiter=",")):
+            if i != 0:
+                if searchText == "all":
+                    print(row)
+                else:
+                    inputValue = input(searchText)
+                    if str(inputValue).strip() == str(row[index]):
+                        print(row)
+
 choice = int(input())
 if choice == 1:
-    slNoInput = input("Enter Serial No:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if slNoInput.strip() == row[0]:
-                    print(row)
-
+    getData("Enter Serial No:  ", 0 )
 
 if choice == 2:
-    accInput = input("Enter Account:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if accInput.strip() == row[2]:
-                    print(row)
+    getData("Enter Account:  ", 2 )
 
 if choice == 3:
-    codeInput = input("Enter Code:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if codeInput.strip() == row[3]:
-                    print(row)
-
+    getData("Enter Code:  ", 3 )
 
 if choice == 4:
-    countryCodeInput = input("Enter Country Code:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if countryCodeInput.strip() == row[4]:
-                    print(row)
+    getData("Enter Country Code:  ", 4 )
 
 if choice == 5:
-    productTypeInput = input("Enter Product Type:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if productTypeInput.strip() == row[5]:
-                    print(row)
+    getData("Enter Product Type:  ", 5 )
 
 if choice == 6:
-    valueInput = input("Enter Value:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if valueInput.strip() == row[6]:
-                    print(row)
+    getData("Enter Value:  ", 6 )
 
 if choice == 7:
-    statusInput = input("Enter Status:  ")
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for i, row in enumerate(reader):
-            if i != 0:
-                if statusInput.strip() == row[7]:
-                    print(row)
+    getData("Enter Status:  ", 7 )
 
 if choice == 8:
-    with open("gsquarterly_december-2020-revised.csv", "rt") as f:
-        reader = csv.reader(f, delimiter=",")
-        for row in reader:
-            print(row)
+    getData("all", 0 )
